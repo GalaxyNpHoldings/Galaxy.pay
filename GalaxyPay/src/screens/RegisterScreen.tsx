@@ -1,3 +1,4 @@
+// Importación de módulos y componentes necesarios
 import React from 'react';
 import {
   View,
@@ -7,12 +8,13 @@ import {
   useColorScheme,
   Linking,
 } from 'react-native';
-import Logo from '../assets/galaxy_logo1.svg'; // ← Aquí importamos el SVG
-
+import Logo from '../assets/galaxy_logo1.svg'; // ← Importación del logo en formato SVG
+// Pantalla principal de registro con opciones (correo, Google, Facebook)
 const RegisterScreen = ({ navigation }) => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme(); // Detecta el modo claro/oscuro del sistema
   const isDark = colorScheme === 'dark';
-
+  
+// Definición del tema de colores dinámico según modo claro/oscuro
   const theme = {
     background: isDark ? '#121212' : '#ffffff',
     text: isDark ? '#ffffff' : '#000000',
@@ -22,6 +24,7 @@ const RegisterScreen = ({ navigation }) => {
     buttonText: '#ffffff',
   };
 
+  // Funciones para abrir enlaces externos de Términos y Política de Privacidad
   const openTerms = () => {
     Linking.openURL('https://galaxypay.com/terminos');
   };
@@ -32,16 +35,19 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
+        {/* Logo de la aplicación */}
       <Logo width={120} height={120} style={styles.logo} />
-
+      {/* Título de la pantalla */}
       <Text style={[styles.title, { color: theme.accent }]}>
         Regístrate en Galaxy Pay
       </Text>
-
+      
+      {/* Botón de registro por correo */}
       <TouchableOpacity style={[styles.button, { backgroundColor: theme.purple }]}>
         <Text style={[styles.buttonText, { color: theme.buttonText }]}>correo electrónico</Text>
       </TouchableOpacity>
 
+      {/* Botones redes sociales */}
       <TouchableOpacity style={[styles.button, { backgroundColor: '#5e35b1' }]}>
         <Text style={styles.buttonText}>continuar con google</Text>
       </TouchableOpacity>
@@ -50,6 +56,7 @@ const RegisterScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>continuar con facebook</Text>
       </TouchableOpacity>
 
+      {/* Texto aceptacion de terminos y condiciones con enlaces */}
       <Text style={[styles.legalText, { color: theme.secondaryText }]}>
         Al continuar, confirmas que estás de acuerdo con los{' '}
         <Text onPress={openTerms} style={{ textDecorationLine: 'underline' }}>
@@ -62,6 +69,7 @@ const RegisterScreen = ({ navigation }) => {
         .
       </Text>
 
+      {/* Enlace para usuarios existentes */}
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={{ color: theme.accent, marginTop: 20 }}>
           ¿Ya tienes una cuenta? <Text style={{ fontWeight: 'bold' }}>Iniciar sesión</Text>
@@ -71,6 +79,7 @@ const RegisterScreen = ({ navigation }) => {
   );
 };
 
+{/* Estilos usados en la visual */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
