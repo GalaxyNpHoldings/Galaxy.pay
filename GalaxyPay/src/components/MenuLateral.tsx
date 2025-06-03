@@ -16,7 +16,7 @@ interface MenuLateralProps {
   onClose: () => void;
   navigation: any;
 }
-
+// En este segmento se expone el menu con su respectivo subemenu integrado para que cuando se desplegue puedan ver las pestañas internas
 const MenuLateral: React.FC<MenuLateralProps> = ({ visible, onClose, navigation }) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
@@ -132,7 +132,7 @@ const MenuLateral: React.FC<MenuLateralProps> = ({ visible, onClose, navigation 
     </Modal>
   );
 };
-
+// En estos estilos se integra el fondo degradado y los tipos de letra ademas del despliegue lateral
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
