@@ -1,32 +1,41 @@
+// Importación de módulos y componentes necesarios
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons'; // Iconos vectoriales
+import { Picker } from '@react-native-picker/picker'; // Selector tipo dropdown
+import { NativeStackScreenProps } from '@react-navigation/native-stack'; // Tipado de navegación
 
+// Definición de las rutas posibles en el stack de navegación
 type RootStackParamList = {
   RegisterStep4Screen: undefined;
   RegisterStep5Screen: undefined;
 };
 
+// Tipado de props específicas para esta pantalla
 type Props = NativeStackScreenProps<RootStackParamList, 'RegisterStep4Screen'>;
 
+// Componente funcional principal
 const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
-  const [situacionLaboral, setSituacionLaboral] = useState<string>('');
-  const [sectorTrabajo, setSectorTrabajo] = useState<string>('');
-  const [origenFondos, setOrigenFondos] = useState<string>('');
-  const [esCiudadanoEEUU, setEsCiudadanoEEUU] = useState<boolean | null>(null);
 
+  // Estados que almacenan la selección del usuario
+  const [situacionLaboral, setSituacionLaboral] = useState<string>(''); // Situación laboral
+  const [sectorTrabajo, setSectorTrabajo] = useState<string>(''); // Sector donde trabaja
+  const [origenFondos, setOrigenFondos] = useState<string>(''); // Origen de fondos
+  const [esCiudadanoEEUU, setEsCiudadanoEEUU] = useState<boolean | null>(null); // Ciudadanía estadounidense
+
+  // Función que verifica si todos los campos están llenos antes de continuar
   const handleContinue = () => {
     if (situacionLaboral && sectorTrabajo && origenFondos && esCiudadanoEEUU !== null) {
-      navigation.navigate('RegisterStep5Screen');
+      navigation.navigate('RegisterStep5Screen'); // Navega al siguiente paso
     }
   };
 
   return (
     <View style={styles.container}>
+      {/* Ícono para retroceder */}
       <Ionicons name="arrow-back" size={24} color="white" style={styles.backIcon} />
-      
+
+      {/* Barra de progreso: muestra visual del paso 4 de 7 */}
       <View style={styles.progress}>
         {[...Array(7)].map((_, index) => (
           <View
@@ -36,13 +45,14 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
         ))}
       </View>
 
+      {/* Logo e instrucciones */}
       <Text style={styles.logo}>
         galaxy
         <Text style={styles.logoBold}>pay</Text>
       </Text>
       <Text style={styles.title}>Información laboral</Text>
 
-      {/* Situación laboral */}
+      {/* Selector: Situación laboral */}
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={situacionLaboral}
@@ -62,7 +72,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
         </Picker>
       </View>
 
-      {/* Sector de trabajo actualizado según imagen */}
+      {/* Selector: Sector donde trabaja */}
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={sectorTrabajo}
@@ -81,7 +91,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
         </Picker>
       </View>
 
-      {/* Origen previsto de fondos actualizado según imagen */}
+      {/* Selector: Origen previsto de los fondos */}
       <View style={styles.pickerContainer}>
         <Picker
           selectedValue={origenFondos}
@@ -97,7 +107,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
         </Picker>
       </View>
 
-      {/* Ciudadanía */}
+      {/* Pregunta: Ciudadano/residente fiscal de EE. UU. */}
       <Text style={styles.label}>¿Es ciudadano/residente fiscal de EE.UU.?</Text>
       <View style={styles.radioGroup}>
         <TouchableOpacity
@@ -107,6 +117,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
           <View style={[styles.radioCircle, esCiudadanoEEUU === true && styles.selected]} />
           <Text style={styles.radioText}>Sí</Text>
         </TouchableOpacity>
+        {/* Opción No */}
         <TouchableOpacity
           style={styles.radioOption}
           onPress={() => setEsCiudadanoEEUU(false)}
@@ -116,7 +127,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Botón continuar */}
+      {/* Botón para continuar */}
       <TouchableOpacity
         style={[
           styles.button,
@@ -132,7 +143,7 @@ const RegisterStep4Screen: React.FC<Props> = ({ navigation }) => {
 };
 
 export default RegisterStep4Screen;
-
+// Estilos de la pantalla
 const styles = StyleSheet.create({
   container: {
     flex: 1,
