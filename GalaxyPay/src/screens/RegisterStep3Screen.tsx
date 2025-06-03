@@ -1,3 +1,4 @@
+// Pantalla del tercer paso del registro: información laboral
 import React, { useState } from 'react';
 import {
   View,
@@ -8,7 +9,7 @@ import {
   Platform,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Logo from '../assets/galaxy_logo1.svg';
+import Logo from '../assets/galaxy_logo1.svg'; // Logo SVG
 
 type RootStackParamList = {
   RegisterStep3Screen: undefined;
@@ -25,6 +26,7 @@ const RegisterStep3Screen: React.FC<Props> = ({ navigation }) => {
   const [provincia, setProvincia] = useState<string>('');
   const [pais, setPais] = useState<string>('');
 
+  // Función que navega al siguiente paso si todos los campos están llenos
   const handleContinue = () => {
     if (direccion1 && codigoPostal && localidad && provincia && pais) {
       navigation.navigate('RegisterStep4Screen');
@@ -33,6 +35,8 @@ const RegisterStep3Screen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      {/* Barra de progreso (paso 2 de 6) */}
       <View style={styles.progressBar}>
         <View style={[styles.step, styles.activeStep]} />
         <View style={[styles.step, styles.activeStep]} />
@@ -41,9 +45,11 @@ const RegisterStep3Screen: React.FC<Props> = ({ navigation }) => {
         ))}
       </View>
 
+      {/* Logo e instrucciones */}
       <Logo width={100} height={100} style={styles.logo} />
       <Text style={styles.title}>dirección postal completa</Text>
 
+      {/* Campos de entrada */}
       <TextInput
         style={styles.input}
         placeholder="direccion 1"
@@ -88,6 +94,7 @@ const RegisterStep3Screen: React.FC<Props> = ({ navigation }) => {
         onChangeText={setPais}
       />
 
+      {/* Botón para continuar */}
       <TouchableOpacity style={styles.button} onPress={handleContinue}>
         <Text style={styles.buttonText}>continuar</Text>
       </TouchableOpacity>
@@ -97,6 +104,8 @@ const RegisterStep3Screen: React.FC<Props> = ({ navigation }) => {
 
 export default RegisterStep3Screen;
 
+
+// Estilos para la pantalla
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 30, backgroundColor: '#1d1d1d' },
   progressBar: {
