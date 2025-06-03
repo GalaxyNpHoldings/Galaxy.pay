@@ -1,3 +1,4 @@
+// Importaciones necesarias de React, componentes de UI y librerías externas
 import React, { useState } from 'react';
 import {
   View,
@@ -11,21 +12,28 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Logo from '../assets/galaxy_logo1.svg';
 
+
+// Pantalla de registro paso 2: recoge datos personales
 const RegisterStep2Screen = ({ navigation }) => {
+
+  // Estados para los campos del formulario
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [documentId, setDocumentId] = useState('');
   const [birthDate, setBirthDate] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
+  // Mostrar/ocultar selector de fecha
   const showDatePicker = () => setDatePickerVisibility(true);
   const hideDatePicker = () => setDatePickerVisibility(false);
 
+  // Al confirmar fecha, se guarda y se cierra el picker
   const handleConfirm = (date) => {
     setBirthDate(date);
     hideDatePicker();
   };
 
+  // Navega al siguiente paso si todos los campos están completos
   const handleContinue = () => {
     if (name && lastName && documentId && birthDate) {
       navigation.navigate('RegisterStep3');
@@ -34,6 +42,8 @@ const RegisterStep2Screen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
+      {/* Barra de progreso de 6 pasos, activo el primero */}
       <View style={styles.progressBar}>
         <View style={[styles.step, styles.activeStep]} />
         {[...Array(5)].map((_, i) => (
@@ -41,9 +51,11 @@ const RegisterStep2Screen = ({ navigation }) => {
         ))}
       </View>
 
+      {/* Logo de la aplicación */}
       <Logo width={100} height={100} style={styles.logo} />
       <Text style={styles.title}>datos personales</Text>
 
+      {/* Campo: Nombre */}
       <TextInput
         style={styles.input}
         placeholder="Nombre"
@@ -52,6 +64,7 @@ const RegisterStep2Screen = ({ navigation }) => {
         onChangeText={setName}
       />
 
+      {/* Campo: Apellidos */}
       <TextInput
         style={styles.input}
         placeholder="Apellidos"
@@ -60,6 +73,7 @@ const RegisterStep2Screen = ({ navigation }) => {
         onChangeText={setLastName}
       />
 
+      {/* Campo: Documento de identidad */}
       <TextInput
         style={styles.input}
         placeholder="Documento de identidad"
@@ -69,6 +83,7 @@ const RegisterStep2Screen = ({ navigation }) => {
         keyboardType="numeric"
       />
 
+      {/* Selector de fecha de nacimiento */}
       <TouchableOpacity style={styles.input} onPress={showDatePicker}>
         <Text style={{ color: birthDate ? '#fff' : '#ccc' }}>
           {birthDate
@@ -78,6 +93,7 @@ const RegisterStep2Screen = ({ navigation }) => {
         <Icon name="calendar" size={18} color="#ccc" style={styles.icon} />
       </TouchableOpacity>
 
+      {/* Modal para selección de fecha */}
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="date"
@@ -91,6 +107,7 @@ const RegisterStep2Screen = ({ navigation }) => {
         themeVariant="dark"
       />
 
+      {/* Botón para continuar al siguiente paso */}
       <TouchableOpacity style={styles.button} onPress={handleContinue}>
         <Text style={styles.buttonText}>continuar</Text>
       </TouchableOpacity>
@@ -98,6 +115,7 @@ const RegisterStep2Screen = ({ navigation }) => {
   );
 };
 
+// Estilos para la pantalla
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 30, backgroundColor: '#1d1d1d' },
   progressBar: {
