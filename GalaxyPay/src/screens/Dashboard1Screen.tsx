@@ -42,7 +42,7 @@ export default function Dashboard1Screen({ navigation }) {
           />
         </View>
 
-        {/* Aquí puedes añadir el contenido del dashboard */}
+        {/* contenido del panel superior */}
         <View style={styles.content}>
           <Text style={styles.contentText}>Contenido del Dashboard</Text>
         </View>
@@ -58,6 +58,7 @@ export default function Dashboard1Screen({ navigation }) {
   );
 }
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
