@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-nativ
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
+{/* Texto mensajes provicionales */}
 const AssistantChatScreen = () => {
   const [messages, setMessages] = useState([
     { from: 'bot', text: 'Hola, dime en qué puedo ayudarte' },
@@ -48,7 +49,7 @@ const AssistantChatScreen = () => {
       <Text style={{ color: '#fff' }}>{text}</Text>
     </View>
   );
-
+// Retorno al perfil del usuario
   return (
     <View style={{ flex: 1, backgroundColor: '#1e1e1e', paddingTop: 40 }}>
       <ScrollView contentContainerStyle={{ padding: 20 }} showsVerticalScrollIndicator={false}>
