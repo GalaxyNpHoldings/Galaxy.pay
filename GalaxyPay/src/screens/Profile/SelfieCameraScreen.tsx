@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+// Llamado a sincronizar la camara del movil con el app para tomar selfie enmarcada
 const SelfieCameraScreen = () => {
   return (
     <View style={styles.container}>
@@ -16,6 +17,7 @@ const SelfieCameraScreen = () => {
   );
 };
 
+// Estilos de la vista
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#000', alignItems: 'center', justifyContent: 'center' },
   frame: { width: 200, height: 200, borderRadius: 100, borderWidth: 2, borderColor: '#fff', marginBottom: 20 },
