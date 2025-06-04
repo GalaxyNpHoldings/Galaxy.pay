@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
+// Llamado a la seleccion del avatar como opcion para la imagen del usuario
 const AddAvatarScreen = () => {
   return (
     <View style={styles.container}>
@@ -16,6 +17,7 @@ const AddAvatarScreen = () => {
   );
 };
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#1c1c1e', alignItems: 'center', padding: 20 },
   title: { fontSize: 16, color: '#f54690', marginVertical: 10 },
