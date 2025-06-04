@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
+// Llammado a subir una foto existente en el movil
 const ChangePhotoScreen = () => {
   return (
     <View style={styles.container}>
@@ -14,6 +15,7 @@ const ChangePhotoScreen = () => {
   );
 };
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#1c1c1e', alignItems: 'center', paddingTop: 50 },
   title: { fontSize: 18, color: '#fff', marginBottom: 10 },
