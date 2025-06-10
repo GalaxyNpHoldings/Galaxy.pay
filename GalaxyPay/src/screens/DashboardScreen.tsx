@@ -1,3 +1,4 @@
+// Importación de librerías principales de React y React Native
 import React, { useState } from 'react';
 import {
   View,
@@ -8,14 +9,16 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
-import MenuLateral from '../components/MenuLateral';
+import { useNavigation } from '@react-navigation/native'; // Hook de navegación
+import { Ionicons } from '@expo/vector-icons'; // Íconos de Expo
+import MenuLateral from '../components/MenuLateral'; // Componente personalizado para el menú lateral
 
+// Pantalla principal del panel de control
 const DashboardScreen = () => {
-  const navigation = useNavigation();
-  const [menuVisible, setMenuVisible] = useState(false);
+  const navigation = useNavigation(); // Acceso a navegación
+  const [menuVisible, setMenuVisible] = useState(false); // Estado para mostrar/ocultar menú lateral
 
+  // Función para navegar a la pantalla del chatbot
   const handleChatbotPress = () => {
     navigation.navigate('Assistant');
   };
@@ -23,7 +26,7 @@ const DashboardScreen = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Encabezado */}
+        {/* Encabezado con menú, avatar y notificaciones */}
         <View style={styles.header}>
           <TouchableOpacity onPress={() => setMenuVisible(true)}>
             <Ionicons name="menu" size={28} color="#fff" />
@@ -40,7 +43,7 @@ const DashboardScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Balance */}
+        {/* Sección de balance total y gastos */}
         <View style={styles.balanceContainer}>
           <View>
             <Text style={styles.balanceTitle}>Total Balance</Text>
@@ -52,7 +55,7 @@ const DashboardScreen = () => {
           </View>
         </View>
 
-        {/* Tarjetas y cuentas */}
+        {/* Scroll horizontal para mostrar tarjetas bancarias */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.cardsScroll}>
           <View style={styles.card}>
             <Text style={styles.cardTitle}>Nombre de usuario</Text>
@@ -61,7 +64,7 @@ const DashboardScreen = () => {
           </View>
         </ScrollView>
 
-        {/* Movimientos */}
+        {/* Encabezado de la sección de movimientos */}
         <View style={styles.movementsHeader}>
           <Text style={styles.movementsTitle}>movimientos</Text>
           <TouchableOpacity>
@@ -69,6 +72,7 @@ const DashboardScreen = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Lista vertical de movimientos recientes */}
         <ScrollView style={styles.movementsList}>
           <View style={styles.movementItem}>
             <Image source={require('../assets/icon-airbnb.png')} style={styles.movementIcon} />
@@ -96,7 +100,7 @@ const DashboardScreen = () => {
           </View>
         </ScrollView>
 
-        {/* Menú inferior */}
+        {/* Menú de navegación inferior fijo */}
         <View style={styles.bottomMenu}>
           <TouchableOpacity>
             <Image source={require('../assets/icon-home.png')} style={styles.menuIcon} />
@@ -115,7 +119,7 @@ const DashboardScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Menú lateral */}
+        {/* Componente de menú lateral (drawer) */}
         <MenuLateral
           visible={menuVisible}
           onClose={() => setMenuVisible(false)}
@@ -126,6 +130,7 @@ const DashboardScreen = () => {
   );
 };
 
+{/* Estilos utilizados en la página */}
 export default DashboardScreen;
 
 const styles = StyleSheet.create({

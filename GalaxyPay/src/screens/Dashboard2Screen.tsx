@@ -7,16 +7,19 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // Iconos de Ionicons
+import { useNavigation, DrawerActions } from '@react-navigation/native'; // Navegación y drawer
+
 
 export default function Dashboard2Screen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); // Hook para acceder a navegación
 
+  // Navega a la pantalla del asistente/chatbot
   const handleChatbotPress = () => {
     navigation.navigate('Assistant');
   };
 
+// Abre el menú lateral (drawer)
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
@@ -24,48 +27,62 @@ export default function Dashboard2Screen() {
   return (
     <View style={styles.wrapper}>
       <ScrollView style={styles.container}>
-        {/* Encabezado con botón de menú */}
+
+        {/* Encabezado con botón de menú, avatar y notificaciones */}
         <View style={styles.header}>
           <TouchableOpacity onPress={openDrawer}>
             <Ionicons name="menu-outline" size={28} color="#fff" />
           </TouchableOpacity>
-
+          
+          {/* Avatar del usuario */}
           <Image source={{ uri: 'https://i.pravatar.cc/100' }} style={styles.avatar} />
           <View style={styles.headerText}>
+
+            {/* Texto de saludo */}
             <Text style={styles.greeting}>Hola, Nombre Usuario</Text>
             <Text style={styles.subtext}>Buenos días</Text>
           </View>
+
+          {/* Iconos de notificación y configuración */}
           <View style={styles.headerIcons}>
             <Ionicons name="notifications-outline" size={24} color="#fff" style={styles.icon} />
             <Ionicons name="settings-outline" size={24} color="#fff" />
           </View>
         </View>
 
-        {/* Saldos */}
+        {/* Sección de saldos */}
         <View style={styles.balanceRow}>
+          {/* Saldo total */}
           <View style={styles.balanceBox}>
             <Text style={styles.balanceLabel}>Total Balance</Text>
             <Text style={styles.balanceAmount}>$7,783.00</Text>
           </View>
+
+            {/* Total que debe */}
           <View style={styles.balanceBox}>
             <Text style={styles.balanceLabel}>Total Deber</Text>
             <Text style={[styles.balanceAmount, { color: '#F39C12' }]}>-$1,187.40</Text>
           </View>
         </View>
 
-        {/* Texto promocional */}
+        {/* Mensaje promocional */}
         <Text style={styles.banner}>Envía dinero al instante. Donde quieras, como quieras.</Text>
 
-        {/* Acciones */}
+        {/* Botones de acciones rápidas */}
         <View style={styles.actions}>
+            {/* Botón para añadir dinero */}
           <TouchableOpacity style={[styles.actionButton, { backgroundColor: '#2ecc71' }]}>
             <Ionicons name="add-circle-outline" size={24} color="#fff" />
             <Text style={styles.actionText}>Añadir</Text>
           </TouchableOpacity>
+
+           {/* Botón para enviar dinero */}
           <TouchableOpacity style={[styles.actionButton, { backgroundColor: '#f39c12' }]}>
             <Ionicons name="paper-plane-outline" size={24} color="#fff" />
             <Text style={styles.actionText}>Enviar</Text>
           </TouchableOpacity>
+
+            {/* Botón para recibir dinero */}
           <TouchableOpacity style={[styles.actionButton, { backgroundColor: '#e74c3c' }]}>
             <Ionicons name="download-outline" size={24} color="#fff" />
             <Text style={styles.actionText}>Recibir</Text>
@@ -97,14 +114,14 @@ export default function Dashboard2Screen() {
         </View>
       </ScrollView>
 
-      {/* Botón central para el chatbot */}
+       {/* Botón flotante para acceder al chatbot */}
       <TouchableOpacity style={styles.chatbotButton} onPress={handleChatbotPress}>
         <Ionicons name="chatbubble-ellipses" size={28} color="#fff" />
       </TouchableOpacity>
     </View>
   );
 }
-
+ {/* Estilos utilizados en la página */}
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,

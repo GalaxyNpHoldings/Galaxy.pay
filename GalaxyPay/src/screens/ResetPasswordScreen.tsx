@@ -11,6 +11,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
+// solicitud de informacion al usuario
 export default function ResetPasswordScreen() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -37,7 +38,7 @@ export default function ResetPasswordScreen() {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <Ionicons name="arrow-back" size={24} color="#fff" />
       </TouchableOpacity>
-
+      
       <Image
         source={require('../assets/logo.png')}
         style={styles.logo}
@@ -69,7 +70,7 @@ export default function ResetPasswordScreen() {
     </View>
   );
 }
-
+// Estilos de la visual
 const styles = StyleSheet.create({
   container: {
     flex: 1,

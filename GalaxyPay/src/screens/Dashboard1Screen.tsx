@@ -32,6 +32,7 @@ export default function Dashboard1Screen() {
         </View>
       </View>
 
+<<<<<<< HEAD
       {/* Accesos rápidos (Remesas, etc.) */}
       <View style={styles.quickActions}>
         <TouchableOpacity
@@ -41,6 +42,13 @@ export default function Dashboard1Screen() {
           <Icon name="send" size={24} color="#fff" />
           <Text style={styles.actionText}>Remesas</Text>
         </TouchableOpacity>
+=======
+        {/* contenido del panel superior */}
+        <View style={styles.content}>
+          <Text style={styles.contentText}>Contenido del Dashboard</Text>
+        </View>
+      </ScrollView>
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
 
         {/* Puedes agregar otros botones similares aquí */}
       </View>
@@ -48,6 +56,7 @@ export default function Dashboard1Screen() {
   );
 }
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   container: {
     flex: 1,

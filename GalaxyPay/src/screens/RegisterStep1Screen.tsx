@@ -1,3 +1,4 @@
+// Importaciones necesarias
 import React, { useState } from 'react';
 import {
   View,
@@ -10,23 +11,26 @@ import {
   Platform,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { countries } from '../data/countries';
+import { countries } from '../data/countries'; // Se importa una lista de países con banderas e indicativos
 import Logo from '../assets/galaxy_logo1.svg';
 
+// Primer paso del registro: selección de país, correo, aceptación de términos
 const RegisterStep1Screen = ({ navigation }) => {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [email, setEmail] = useState('');
-  const [phoneCode, setPhoneCode] = useState('');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [searchText, setSearchText] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(null); // País seleccionado
+  const [email, setEmail] = useState(''); // Correo electrónico del usuario
+  const [phoneCode, setPhoneCode] = useState(''); // Indicativo del país
+  const [acceptedTerms, setAcceptedTerms] = useState(false); // Checkbox de aceptación
+  const [modalVisible, setModalVisible] = useState(false); // Control del modal
+  const [searchText, setSearchText] = useState(''); // Búsqueda dentro del modal
 
+  // Filtro para países según texto buscado
   const filteredCountries = countries.filter((country) =>
     '${country.label} ${country.code}'
       .toLowerCase()
       .includes(searchText.toLowerCase())
   );
 
+  // Selección de país desde el modal
   const selectCountry = (country) => {
     setSelectedCountry(country);
     setPhoneCode(country.code);
@@ -36,15 +40,17 @@ const RegisterStep1Screen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      {/* Logo */}
       <Logo width={100} height={100} style={styles.logo} />
 
+      {/* Descripción e instrucciones */}
       <Text style={styles.description}>
         Te acompañamos en el proceso de registro de forma sencilla y rápida
       </Text>
 
       <Text style={styles.warning}>Indícanos tu país y correo electrónico</Text>
 
-      {/* Selector de país */}
+      {/* Selector de país que abre el modal */}
       <TouchableOpacity
         style={styles.input}
         onPress={() => setModalVisible(true)}
@@ -54,9 +60,11 @@ const RegisterStep1Screen = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      {/* Modal */}
+      {/* Modal para búsqueda y selección del país */}
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.modalContainer}>
+
+          {/* Barra de búsqueda */}
           <TextInput
             placeholder="buscar indicativo de país"
             placeholderTextColor="#ccc"
@@ -65,6 +73,7 @@ const RegisterStep1Screen = ({ navigation }) => {
             onChangeText={setSearchText}
           />
 
+          {/* Lista de países filtrados */}
           <FlatList
             data={filteredCountries}
             keyExtractor={(item) => item.value}
@@ -82,7 +91,7 @@ const RegisterStep1Screen = ({ navigation }) => {
         </View>
       </Modal>
 
-      {/* Input de correo */}
+      {/* Campo de correo */}
       <TextInput
         placeholder="e-mail"
         placeholderTextColor="#888"
@@ -92,14 +101,14 @@ const RegisterStep1Screen = ({ navigation }) => {
         keyboardType="email-address"
       />
 
-      {/* Teléfono */}
+      {/* Campo de teléfono (solo visualiza código) */}
       <View style={styles.input}>
         <Text style={{ color: phoneCode ? '#000' : '#888' }}>
           {phoneCode || 'Teléfono'}
         </Text>
       </View>
 
-      {/* Checkbox */}
+      {/* Aceptación de términos */}
       <View style={styles.checkboxContainer}>
         <CheckBox value={acceptedTerms} onValueChange={setAcceptedTerms} />
         <Text style={styles.checkboxLabel}>
@@ -107,7 +116,7 @@ const RegisterStep1Screen = ({ navigation }) => {
         </Text>
       </View>
 
-      {/* Botón */}
+      {/* Botón para continuar al siguiente paso */}
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -122,6 +131,7 @@ const RegisterStep1Screen = ({ navigation }) => {
   );
 };
 
+{/* Estilos utilizados en la visual */}
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 30, paddingTop: 50 },
   logo: { alignSelf: 'center', marginBottom: 20 },
@@ -184,3 +194,4 @@ const styles = StyleSheet.create({
 });
 
 export default RegisterStep1Screen;
+R

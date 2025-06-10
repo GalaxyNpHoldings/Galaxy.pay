@@ -2,7 +2,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+<<<<<<< HEAD
 // Autenticación y registro
+=======
+// Screens de autenticación y registro, esta es la entrada del app, con la pagina principal y la seleccion por parte del usuario para iniciar en caso de que ya tenga un registro o registrarse si fuere nuevo
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
 import WelcomeScreen from '../screens/WelcomeScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import RegisterStep1Screen from '../screens/RegisterStep1Screen';
@@ -15,6 +19,11 @@ import RegisterStep7Screen from '../screens/RegisterStep7Screen';
 import RegisterStep8Screen from '../screens/RegisterStep8Screen';
 import RegisterStep9Screen from '../screens/RegisterStep9Screen';
 import LoginScreen from '../screens/LoginScreen';
+<<<<<<< HEAD
+=======
+
+// Recuperación de contraseña, aqui se vincula las pantallas de codigo de seguridad
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
 import PasswordRecoveryScreen from '../screens/PasswordRecoveryScreen';
 import VerificationCodeScreen from '../screens/VerificationCodeScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
@@ -23,7 +32,11 @@ import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import AssistantWelcomeScreen from '../screens/AssistantWelcomeScreen';
 import AssistantChatScreen from '../screens/AssistantChatScreen';
 
+<<<<<<< HEAD
 // Pantalla principal con Drawer
+=======
+// Nuevo: Drawer Navigator (reemplaza HomeScreen), ya que en esta pantalla se incorpora el menu principal con sus respectivos submenues
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
 import DrawerNavigator from './DrawerNavigator';
 
 // Notificaciones
@@ -38,6 +51,7 @@ import RemesaConfirmacionExitosaScreen from '../screens/RemesaConfirmacionExitos
 
 const Stack = createStackNavigator();
 
+// En este segmento se relaciona la navegacion por todas las pantallas del registro inicial para la creacion de las cuentas de usuario nuevas
 const AppNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
@@ -54,6 +68,7 @@ const AppNavigator = () => (
       <Stack.Screen name="RegisterStep8" component={RegisterStep8Screen} />
       <Stack.Screen name="RegisterStep9" component={RegisterStep9Screen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+<<<<<<< HEAD
       <Stack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
       <Stack.Screen name="CodeVerification" component={VerificationCodeScreen} />
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
@@ -62,6 +77,17 @@ const AppNavigator = () => (
       <Stack.Screen name="Home" component={DrawerNavigator} />
 
       {/* Asistente virtual */}
+=======
+
+      {/* Reemplazado: Home ahora es DrawerNavigator */}
+      <Stack.Screen name="Home" component={DrawerNavigator} />
+
+      <Stack.Screen name="PasswordRecovery" component={PasswordRecoveryScreen} />
+      <Stack.Screen name="CodeVerification" component={VerificationCodeScreen} />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+      
+// En este segmento se ingresa el uso del asistente o chat boot con las dos pantallas principales, la de ingreso al char y la de la interaccion con el usuario
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
       <Stack.Screen name="AssistantWelcome" component={AssistantWelcomeScreen} />
       <Stack.Screen name="AssistantChat" component={AssistantChatScreen} />
 

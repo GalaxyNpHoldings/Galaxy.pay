@@ -15,20 +15,22 @@ import { useNavigation } from '@react-navigation/native';
 export default function RecoverPasswordScreen() {
   const [email, setEmail] = useState('');
   const navigation = useNavigation();
-
+  
+// Llamado a datos del usuario para la recuperacion de la contraseña
   const handleRecover = () => {
     if (!email.trim()) {
       Alert.alert('Campo vacío', 'Por favor ingresa tu correo electrónico.');
       return;
     }
 
-    // Simulación de lógica de recuperación
+    // Simulación de lógica de recuperación y alerta de envio de correo
     Alert.alert(
       'Correo enviado',
       'Hemos enviado un enlace a tu correo para restablecer tu contraseña.'
     );
   };
 
+  // Estructura textos y logo
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -71,6 +73,7 @@ export default function RecoverPasswordScreen() {
   );
 }
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   container: {
     flex: 1,

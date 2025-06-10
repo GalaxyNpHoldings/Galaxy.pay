@@ -8,7 +8,7 @@ const AssistantScreen = () => {
   const handleStartChat = () => {
     navigation.navigate('AssistantChat'); // Asegúrate de tener esta ruta configurada en tu navigator
   };
-
+// Inicio de la interaccion con el usuario
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -21,7 +21,7 @@ const AssistantScreen = () => {
           <Image source={require('../assets/menu.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
-
+// Logo presente en la pantalla
       <View style={styles.card}>
         <Image source={require('../assets/logo-galaxy.png')} style={styles.logo} />
         <Text style={styles.title}>Bienvenid@</Text>
@@ -39,7 +39,7 @@ const AssistantScreen = () => {
 };
 
 export default AssistantScreen;
-
+// Estilos relacionados
 const styles = StyleSheet.create({
   container: {
     flex: 1,

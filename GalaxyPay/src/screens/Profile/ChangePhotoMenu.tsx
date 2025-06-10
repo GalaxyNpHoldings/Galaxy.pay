@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+// Menu para que el usuario seleccione que imagen quierem y acceder al avatar, la camara del movil para la selfie o subir una foto que ya tenga en el dispositivo
 const ChangePhotoMenu = ({ onSelectOption }: { onSelectOption: (option: string) => void }) => {
   const options = ['Añadir avatar', 'Tomar foto', 'Seleccionar foto', 'Crear con la IA'];
 
@@ -15,6 +16,7 @@ const ChangePhotoMenu = ({ onSelectOption }: { onSelectOption: (option: string) 
   );
 };
 
+// Estilos de la visual
 const styles = StyleSheet.create({
   menu: {
     backgroundColor: '#ff5f7e',

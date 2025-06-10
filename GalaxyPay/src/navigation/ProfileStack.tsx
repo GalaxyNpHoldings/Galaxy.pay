@@ -1,3 +1,4 @@
+// en este segmento se inicia la integracion de los submenues de cambios en el perfil
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 

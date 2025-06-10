@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const { height } = Dimensions.get('window');
 
+// Pantalla inicial con bienvenida y botones para navegar a login o registro
 const WelcomeScreen = ({ navigation }) => {
   const handleLogin = () => {
     navigation.navigate('Login');
@@ -15,12 +16,15 @@ const WelcomeScreen = ({ navigation }) => {
 
  return (
     <ImageBackground
-      source={require('../assets/welcome_bg.svg')}
+      source={require('../assets/welcome_bg.svg')} // Fondo gráfico
       style={styles.container}
       resizeMode="cover"
     >
+      
+      {/* Texto de bienvenida */}
       <Text style={styles.title}>Bienvenid@s al futuro</Text>
 
+      {/* Logo de la app */}
       <Image
         source={require('../assets/galaxy_logo.svg')}
         style={styles.logo}
@@ -29,6 +33,7 @@ const WelcomeScreen = ({ navigation }) => {
 
       <Text style={styles.brand}>galaxypay</Text>
 
+      {/* Botones principales */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.registerBtn} onPress={handleRegister}>
           <Text style={styles.btnText}>crear cuenta</Text>
@@ -42,6 +47,7 @@ const WelcomeScreen = ({ navigation }) => {
   );
 };
 
+{/* Estilos utilizados en la visual */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

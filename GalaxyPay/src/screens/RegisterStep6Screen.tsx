@@ -9,19 +9,23 @@ import {
 import SvgUri from 'react-native-svg-uri';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+// Pantalla del paso 6 del registro
 const RegisterStep6Screen = () => {
+  // Detecta si el sistema está en modo oscuro
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 
+  // Estado para la opción seleccionada: 'no', 'yes' o null (sin selección)
   const [selectedOption, setSelectedOption] = useState<'no' | 'yes' | null>('no');
 
   return (
     <View
       style={[
         styles.container,
-        { backgroundColor: isDarkMode ? '#121212' : '#ffffff' },
+        { backgroundColor: isDarkMode ? '#121212' : '#ffffff' }, // Fondo según tema
       ]}
     >
+       {/* Logo SVG de la aplicación */}
       <SvgUri
         width="140"
         height="60"
@@ -29,14 +33,17 @@ const RegisterStep6Screen = () => {
         style={{ alignSelf: 'center', marginBottom: 20 }}
       />
 
+      {/* Título principal */}
       <Text style={[styles.title, { color: isDarkMode ? '#ff9800' : '#8b4513' }]}>
         Crear contraseña
       </Text>
 
+      {/* Pregunta clave sobre impuestos en EE.UU. */}
       <Text style={[styles.question, { color: isDarkMode ? '#ffffff' : '#000000' }]}>
         ¿Estás sujeto/a a impuestos en los Estados Unidos?
       </Text>
 
+      {/* Enlace informativo sobre la pregunta */}
       <Text
         style={{
           color: '#FF4081',
@@ -51,10 +58,10 @@ const RegisterStep6Screen = () => {
         </Text>
       </Text>
 
-      {/* Opción No */}
+      {/* Opción "No" con ícono de radio */}
       <Pressable
         style={styles.optionContainer}
-        onPress={() => setSelectedOption('no')}
+        onPress={() => setSelectedOption('no')} // Al presionar, se selecciona "no"
       >
         <Icon
           name={selectedOption === 'no' ? 'radiobox-marked' : 'radiobox-blank'}
@@ -66,10 +73,10 @@ const RegisterStep6Screen = () => {
         </Text>
       </Pressable>
 
-      {/* Opción Sí */}
+      {/* Opción "Sí" con ícono de radio */}
       <Pressable
         style={styles.optionContainer}
-        onPress={() => setSelectedOption('yes')}
+        onPress={() => setSelectedOption('yes')} // Al presionar, se selecciona "si"
       >
         <Icon
           name={selectedOption === 'yes' ? 'radiobox-marked' : 'radiobox-blank'}
@@ -81,6 +88,7 @@ const RegisterStep6Screen = () => {
         </Text>
       </Pressable>
 
+      {/* Botón para continuar al siguiente paso */}
       <Pressable style={styles.continueButton}>
         <Text style={styles.continueText}>continuar</Text>
       </Pressable>
@@ -90,6 +98,7 @@ const RegisterStep6Screen = () => {
 
 export default RegisterStep6Screen;
 
+{/* Estilos de la página */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
