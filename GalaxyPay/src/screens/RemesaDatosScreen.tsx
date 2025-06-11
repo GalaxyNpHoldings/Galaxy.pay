@@ -1,12 +1,8 @@
-// Importación de librerías y componentes necesarios
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
 
-// Componente principal de la pantalla de datos de remesa
 export default function RemesaDatosScreen() {
-  // Declaración de estados para almacenar los datos ingresados por el usuario
   const [amount, setAmount] = useState('');
   const [pais, setPais] = useState('');
   const [moneda, setMoneda] = useState('');
@@ -14,15 +10,14 @@ export default function RemesaDatosScreen() {
   const [origen, setOrigen] = useState('');
 
   return (
-    // Contenedor desplazable para permitir scroll en dispositivos pequeños
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Datos de la remesa</Text>
 
-      {/* Tarjeta contenedora de toda la información */}
       <View style={styles.card}>
+        {/* Info receptor */}
         <View style={styles.receiverInfo}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>AM</Text> {/* Iniciales del receptor */}
+            <Text style={styles.avatarText}>AM</Text>
           </View>
           <View style={styles.receiverText}>
             <Text style={styles.receiverName}>Alicia Moratón Bautista</Text>
@@ -30,82 +25,87 @@ export default function RemesaDatosScreen() {
           </View>
         </View>
 
-        {/* Campo para ingresar el monto a enviar */}
+        {/* Campos */}
         <TextInput
           style={styles.input}
           placeholder="Monto a enviar"
           placeholderTextColor="#aaa"
+          keyboardType="numeric"
           value={amount}
           onChangeText={setAmount}
-          keyboardType="numeric" // Solo permite números
         />
 
-        {/* Selector de país */}
+        {/* País */}
         <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={pais}
-            onValueChange={(itemValue) => setPais(itemValue)}
-            style={styles.picker}
-          >
+          <Picker selectedValue={pais} onValueChange={setPais} style={styles.picker}>
             <Picker.Item label="País" value="" />
             <Picker.Item label="Colombia" value="colombia" />
-            <Picker.Item label="Perú" value="peru" />
             <Picker.Item label="México" value="mexico" />
+            <Picker.Item label="Perú" value="peru" />
           </Picker>
         </View>
 
-        {/* Selector de moneda */}
+        {/* Moneda */}
         <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={moneda}
-            onValueChange={(itemValue) => setMoneda(itemValue)}
-            style={styles.picker}
-          >
+          <Picker selectedValue={moneda} onValueChange={setMoneda} style={styles.picker}>
             <Picker.Item label="Moneda" value="" />
             <Picker.Item label="USD" value="usd" />
             <Picker.Item label="COP" value="cop" />
             <Picker.Item label="MXN" value="mxn" />
+            <Picker.Item label="VEF" value="vef" />
+            <Picker.Item label="ARS" value="ars" />
           </Picker>
         </View>
 
-        {/* Selector del tipo de remesa */}
+        {/* Tipo de remesa */}
         <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={tipo}
-            onValueChange={(itemValue) => setTipo(itemValue)}
-            style={styles.picker}
-          >
+          <Picker selectedValue={tipo} onValueChange={setTipo} style={styles.picker}>
             <Picker.Item label="Tipo de remesa" value="" />
             <Picker.Item label="Cuenta bancaria" value="cuenta" />
-            <Picker.Item label="Efectivo" value="efectivo" />
+            <Picker.Item label="Retiro en efectivo" value="efectivo" />
+            <Picker.Item label="Usuario Galaxy Pay" value="galaxy" />
           </Picker>
         </View>
 
-        {/* Selector del origen del dinero */}
+        {/* Submenú tipo de remesa */}
+        {tipo !== '' && (
+          <View style={styles.submenu}>
+            {tipo === 'cuenta' && <Text style={styles.submenuText}>Cuenta bancaria</Text>}
+            {tipo === 'efectivo' && <Text style={styles.submenuText}>Retirada de efectivo</Text>}
+            {tipo === 'galaxy' && <Text style={styles.submenuText}>Usuario Galaxy Pay</Text>}
+          </View>
+        )}
+
+        {/* Origen del dinero */}
         <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={origen}
-            onValueChange={(itemValue) => setOrigen(itemValue)}
-            style={styles.picker}
-          >
+          <Picker selectedValue={origen} onValueChange={setOrigen} style={styles.picker}>
             <Picker.Item label="Origen del dinero" value="" />
-            <Picker.Item label="Salario" value="salario" />
-            <Picker.Item label="Ahorros" value="ahorros" />
-            <Picker.Item label="Otros" value="otros" />
+            <Picker.Item label="Apple Pay / Google Pay" value="apple_google" />
+            <Picker.Item label="Cuenta de Galaxy Pay" value="galaxy_pay" />
+            <Picker.Item label="Transferencia de banco" value="bank" />
           </Picker>
         </View>
 
-        {/* Resumen estático de la transacción */}
+        {/* Submenú origen del dinero */}
+        {origen !== '' && (
+          <View style={styles.submenu}>
+            {origen === 'apple_google' && <Text style={styles.submenuText}>Apple Pay / Google Pay</Text>}
+            {origen === 'galaxy_pay' && <Text style={styles.submenuText}>Cuenta de Galaxy Pay</Text>}
+            {origen === 'bank' && <Text style={styles.submenuText}>Transferencia bancaria</Text>}
+          </View>
+        )}
+
+        {/* Resumen */}
         <View style={styles.transactionSummary}>
-          <Text style={styles.summaryText}>País: Colombia</Text>
-          <Text style={styles.summaryText}>Moneda: COP</Text>
-          <Text style={styles.summaryText}>Tarifa: 4.000 COP</Text>
-          <Text style={styles.summaryText}>Tasa: 1 USD = 4.170 COP</Text>
+          <Text style={styles.summaryText}>País: {pais || 'Colombia'}</Text>
+          <Text style={styles.summaryText}>Moneda: {moneda || 'COP'}</Text>
+          <Text style={styles.summaryText}>Tarifa: 4.000 {moneda || 'COP'}</Text>
+          <Text style={styles.summaryText}>Tasa: 1 USD = 4.170 {moneda || 'COP'}</Text>
           <Text style={styles.summaryText}>Tiempo estimado: 3 días</Text>
         </View>
       </View>
 
-      {/* Botón para continuar con el proceso */}
+      {/* Continuar */}
       <TouchableOpacity style={styles.continueButton}>
         <Text style={styles.continueText}>continuar</Text>
       </TouchableOpacity>
@@ -113,7 +113,6 @@ export default function RemesaDatosScreen() {
   );
 }
 
-// Estilos utilizados en la interfaz
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -175,7 +174,16 @@ const styles = StyleSheet.create({
   },
   picker: {
     color: '#fff',
-    paddingHorizontal: 10,
+  },
+  submenu: {
+    backgroundColor: '#111',
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 12,
+  },
+  submenuText: {
+    color: '#e7458f',
+    fontWeight: 'bold',
   },
   transactionSummary: {
     marginTop: 16,

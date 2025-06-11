@@ -1,53 +1,50 @@
-// Importa las dependencias necesarias de React y React Native
+// screens/RemesasScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, CheckBox } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// Componente principal de la pantalla de selección de destinatario para remesas
 export default function RemesasScreen() {
-  // Estado para almacenar el nombre del usuario seleccionado
-  const [selected, setSelected] = useState('Pedro Picatoste Pan');
-  // Estado para saber si se debe añadir el contacto a favoritos
+  const [selected, setSelected] = useState<string | null>(null);
   const [addToFavorites, setAddToFavorites] = useState(false);
 
-  // Lista de usuarios simulada con nombre, correo y bandera del país
   const users = [
-    { name: 'Pedro Picapiedra Mármol', email: 'pedrop@dominio.com', flag: '🇪🇸' },
-    { name: 'Pedro Picatoste Pan', email: 'pedrop@dominio.com', flag: '🇵🇪' },
-    { name: 'Pedro Picapiedra Mármol', email: 'pedrop@dominio.com', flag: '🇦🇷' },
-    { name: 'Pedro Picapiedra Mármol', email: 'pedrop@dominio.com', flag: '🇲🇽' },
+    { name: 'Jesús Murazo Pérez', email: 'jesus@dominio.com', flag: '🇵🇪', note: 'Tienda “San Juan Cali”', verified: true },
+    { name: 'Alicia Honrafón Bautista', email: 'alicia@dominio.com', flag: '🇨🇴', note: 'Remesas', verified: true },
+    { name: 'Julián Almagro Sánchez', email: 'julian@dominio.com', flag: '🇻🇪', note: 'Primo de Madrid', verified: true },
+    { name: 'Alfonso Grats Fornos', email: 'alfonso@dominio.com', flag: '🇲🇽', note: 'Supermercado C.C.', verified: false },
   ];
 
-  // Contenedor principal con desplazamiento vertical
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>¿A Quién Quieres Enviar Dinero?</Text>
 
       <View style={styles.searchContainer}>
-        {/* Campo de entrada de texto para buscar destinatarios */}
+        <Icon name="search-outline" size={20} color="#aaa" />
         <TextInput
-          style={styles.searchInput}
-          placeholder="Pedro Picapiedra"
+          placeholder="Buscar por nombre, email, número..."
           placeholderTextColor="#aaa"
+          style={styles.searchInput}
         />
-        <Icon name="search" size={24} color="#fff" />
       </View>
 
-      {/* Iteración sobre la lista de usuarios */}
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Contactos habituales</Text>
+        <TouchableOpacity><Text style={styles.verTodos}>ver todos</Text></TouchableOpacity>
+      </View>
+
       {users.map((user, index) => (
         <View key={index} style={styles.userRow}>
-           {/* Avatar con iniciales del usuario */}
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>PP</Text>
+            <Text style={styles.avatarText}>
+              {user.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
+            </Text>
           </View>
-          {/* Información del usuario: nombre y correo */}
           <View style={{ flex: 1 }}>
             <Text style={styles.userName}>{user.name}</Text>
-            <Text style={styles.userEmail}>{user.email}</Text>
+            <Text style={styles.userEmail}>{user.note}</Text>
           </View>
-          {/* Bandera del país del usuario */}
           <Text style={styles.flag}>{user.flag}</Text>
-          {/* CheckBox para seleccionar al usuario */}
+          <Icon name={user.verified ? 'cloud-done-outline' : 'cloud-outline'} size={20} color="#fff" style={{ marginRight: 8 }} />
           <CheckBox
             value={selected === user.name}
             onValueChange={() => setSelected(user.name)}
@@ -55,7 +52,6 @@ export default function RemesasScreen() {
         </View>
       ))}
 
-      {/* Checkbox para añadir el usuario a contactos frecuentes */}
       <View style={styles.checkboxRow}>
         <CheckBox
           value={addToFavorites}
@@ -66,7 +62,6 @@ export default function RemesasScreen() {
         </Text>
       </View>
 
-      {/* Botón para continuar con el proceso */}
       <TouchableOpacity style={styles.continueButton}>
         <Text style={styles.continueText}>continuar</Text>
       </TouchableOpacity>
@@ -74,7 +69,6 @@ export default function RemesasScreen() {
   );
 }
 
-// Estilos para los elementos visuales del componente
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,14 +77,14 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 16,
   },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#333',
+    backgroundColor: '#2a2a2a',
     borderRadius: 10,
     paddingHorizontal: 12,
     marginBottom: 20,
@@ -98,14 +92,29 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     height: 40,
+    marginLeft: 8,
     color: '#fff',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+  verTodos: {
+    color: '#e7458f',
+    fontSize: 12,
   },
   userRow: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#2a2a2a',
     padding: 12,
-    borderRadius: 8,
+    borderRadius: 10,
     marginBottom: 10,
   },
   avatar: {
@@ -124,19 +133,20 @@ const styles = StyleSheet.create({
   userName: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 14,
   },
   userEmail: {
     color: '#aaa',
     fontSize: 12,
   },
   flag: {
-    fontSize: 20,
-    marginRight: 10,
+    fontSize: 18,
+    marginHorizontal: 8,
   },
   checkboxRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 16,
+    marginVertical: 20,
   },
   checkboxLabel: {
     color: '#fff',
@@ -145,9 +155,10 @@ const styles = StyleSheet.create({
   },
   continueButton: {
     backgroundColor: '#e7458f',
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: 10,
+    padding: 14,
     alignItems: 'center',
+    marginTop: 10,
   },
   continueText: {
     color: '#fff',
