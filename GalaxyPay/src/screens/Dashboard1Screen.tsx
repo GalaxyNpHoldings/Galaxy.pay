@@ -1,109 +1,125 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import MenuLateral from '../components/MenuLateral';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import SvgUri from 'react-native-svg-uri'; // o usar react-native-svg para SVG locales
+import welcomeBg from '../assets/welcome_bg.svg';
 
-export default function Dashboard1Screen({ navigation }) {
-  const [menuVisible, setMenuVisible] = useState(false);
+export default function Dashboard1Screen() {
+  const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView style={styles.container}>
-        {/* Encabezado */}
-        <View style={styles.header}>
-          <TouchableOpacity onPress={() => setMenuVisible(true)}>
-            <Ionicons name="menu" size={28} color="#fff" />
-          </TouchableOpacity>
-
-          <View style={styles.userInfo}>
-            <Image
-              source={{ uri: 'https://i.pravatar.cc/100' }}
-              style={styles.avatar}
-            />
-            <View>
-              <Text style={styles.greeting}>Hola, Nombre Usuario</Text>
-              <Text style={styles.subGreeting}>Buenos días</Text>
-            </View>
-          </View>
-
-          <Ionicons
-            name="notifications-outline"
-            size={24}
-            color="#fff"
-            style={styles.notificationIcon}
-          />
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.greeting}>Hola, Nombre Usuario</Text>
+          <Text style={styles.subtitle}>Buenos días</Text>
         </View>
 
+        <View style={styles.headerRight}>
+          <TouchableOpacity onPress={() => navigation.navigate('NotificationsScreen')}>
+            <View style={styles.notificationIcon}>
+              <Icon name="notifications-outline" size={24} color="#fff" />
+              <View style={styles.badge}>
+                <Text style={styles.badgeText}>3</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Icon name="menu-outline" size={28} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+<<<<<<< HEAD
+      {/* Accesos rápidos (Remesas, etc.) */}
+      <View style={styles.quickActions}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={() => navigation.navigate('RemesaSeleccion')}
+        >
+          <Icon name="send" size={24} color="#fff" />
+          <Text style={styles.actionText}>Remesas</Text>
+        </TouchableOpacity>
+=======
         {/* contenido del panel superior */}
         <View style={styles.content}>
           <Text style={styles.contentText}>Contenido del Dashboard</Text>
         </View>
       </ScrollView>
+>>>>>>> 10d277b8251024ce3edeccba532f29c503c3f830
 
-      {/* Menú Lateral */}
-      <MenuLateral
-        visible={menuVisible}
-        onClose={() => setMenuVisible(false)}
-        navigation={navigation}
-      />
-    </SafeAreaView>
+        {/* Puedes agregar otros botones similares aquí */}
+      </View>
+    </ScrollView>
   );
 }
 
 // Estilos de la visual
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#1b1b1f',
-  },
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 40,
+    backgroundColor: '#1a1a1a',
+    padding: 16,
   },
   header: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
-  },
-  userInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginLeft: 15,
-    flex: 1,
-  },
-  avatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    marginRight: 10,
   },
   greeting: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  subGreeting: {
+  subtitle: {
     color: '#aaa',
     fontSize: 14,
   },
-  notificationIcon: {
-    marginLeft: 'auto',
+  headerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
   },
-  content: {
-    marginTop: 40,
+  notificationIcon: {
+    position: 'relative',
+    marginRight: 12,
+  },
+  badge: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: '#e7458f',
+    borderRadius: 8,
+    paddingHorizontal: 4,
+    paddingVertical: 1,
+  },
+  badgeText: {
+    color: '#fff',
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  quickActions: {
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  actionButton: {
+    backgroundColor: '#e7458f',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    flexDirection: 'row',
     alignItems: 'center',
   },
-  contentText: {
+  actionText: {
     color: '#fff',
-    fontSize: 18,
+    marginLeft: 10,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
+
+
+
