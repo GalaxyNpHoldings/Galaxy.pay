@@ -48,10 +48,30 @@ const DashboardScreen = () => {
           <View>
             <Text style={styles.balanceTitle}>Total Balance</Text>
             <Text style={styles.balanceAmount}>$7,783.00</Text>
+            <TouchableOpacity onPress={ () => {} }> {/* TODO: Acción al presionar "Añadir saldo" */}
+              <Text 
+                style={{
+                  color: '#E7458F',
+                  textAlign: 'center',
+                  marginTop: 5,
+                  fontSize: 14,
+                }}
+              > + Añadir Saldo </Text>
+            </TouchableOpacity>
           </View>
           <View>
             <Text style={styles.expenseTitle}>Total Expense</Text>
             <Text style={styles.expenseAmount}>-$1.187.40</Text>
+            <TouchableOpacity onPress={ () => {} }> {/* TODO: Acción al presionar "Enviar" */}
+              <Text 
+                style={{
+                  color: '#F0813A',
+                  textAlign: 'center',
+                  marginTop: 5,
+                  fontSize: 14,
+                }}
+              > Enviar </Text>
+            </TouchableOpacity>
           </View>
         </View>
 

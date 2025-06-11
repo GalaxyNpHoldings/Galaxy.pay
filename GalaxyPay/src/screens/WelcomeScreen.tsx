@@ -13,6 +13,10 @@ const WelcomeScreen = ({ navigation }) => {
   const handleRegister = () => {
     navigation.navigate('Register');
   };
+  
+  const handleKYC = () => {
+    navigation.navigate(''); // TODO: Agregar ruta.
+  };
 
  return (
     <ImageBackground
@@ -20,7 +24,6 @@ const WelcomeScreen = ({ navigation }) => {
       style={styles.container}
       resizeMode="cover"
     >
-      
       {/* Texto de bienvenida */}
       <Text style={styles.title}>Bienvenid@s al futuro</Text>
 
@@ -41,6 +44,10 @@ const WelcomeScreen = ({ navigation }) => {
 
         <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
           <Text style={styles.btnText}>iniciar sesión</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity onPress={handleKYC} style={styles.kycButton}>
+          <Text style={styles.btnText}>Verificar Identidad</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -90,6 +97,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textTransform: 'uppercase',
   },
+  kycButton: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 15,
+    marginTop: 5
+  }
 });
 
 export default WelcomeScreen;
