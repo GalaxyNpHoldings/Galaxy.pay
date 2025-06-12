@@ -34,10 +34,10 @@ import NotificationsScreen from '../screens/NotificationsScreen';
 // Flujo de Remesas
 import RemesaSeleccionScreen from '../screens/RemesaSeleccionScreen';
 import RemesaFormularioScreen from '../screens/RemesaFormularioScreen';
-import RemesaRevisionScreen from '../screens/RemesaRevisionScreen';
+import RemesaRevisionScreen from '../screens/Profile/RemesaRevisionScreen';
 import RemesaBiometriaScreen from '../screens/RemesaBiometriaScreen';
-import RemesaConfirmacionExitosaScreen from '../screens/RemesaConfirmacionExitosaScreen';
-import RemesaReporteScreen from '../screens/RemesaReporteScreen';
+import RemesaConfirmacionExitosaScreen from '../screens/Profile/RemesaConfirmacionExitosaScreen';
+import RemesaReporteScreen from '../screens/Profile/RemesaReporteScreen';
 
 const Stack = createStackNavigator();
 
