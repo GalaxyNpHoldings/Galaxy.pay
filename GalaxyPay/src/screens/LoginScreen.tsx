@@ -8,6 +8,8 @@ import {
 import { Input } from "../components/Input";
 import Logo from "../../assets/images/galaxy_logo1.svg";
 import { Link } from "@react-navigation/native";
+import BiometryAuth from "../components/auth/ByometryAuth";
+import { PasswordInput } from "../components/auth/PasswordInput";
 
 export default function LoginScreen() {
   const handleLogin = () => {
@@ -21,7 +23,7 @@ export default function LoginScreen() {
         Inicia sesión {"\n"} en Galaxy Pay
       </Text>
       <Input placeholder="Usuario" />
-      <Input placeholder="Contraseña" />
+      <PasswordInput placeholder="Contraseña" />
 
       <TouchableOpacity style={styles.registerBtn} onPress={handleLogin}>
         <Text style={styles.textCenter}>Iniciar sesión</Text>
@@ -29,6 +31,7 @@ export default function LoginScreen() {
       <Link style={styles.forgotPasswordText} href="/" action={{ type: "" }}>
         ¿has olvidado tu contraseña?
       </Link>
+      <BiometryAuth/>
       <View style={{ flex: 1 }}></View>
       <Text style={[styles.textCenter, styles.termsText]}>
         Al continuar, confirmas que estás de acuerdo con los Términos de
