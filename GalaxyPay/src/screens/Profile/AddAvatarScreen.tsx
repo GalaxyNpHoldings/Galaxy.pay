@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 // Llamado a la seleccion del avatar como opcion para la imagen del usuario
 const AddAvatarScreen = () => {
